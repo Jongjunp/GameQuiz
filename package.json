@@ -1,0 +1,22 @@
+{
+  "name": "practiceintegral",
+  "version": "1.0.0",
+  "description": "let's practice integral!",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "practiceintegral"
+  },
+  "author": "Park Jongjun",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2",
+    "http-errors": "^2.0.0",
+    "mongoose": "^6.1.8",
+    "require": "^0.4.4",
+    "socket.io": "^4.4.1"
+  }
+}
