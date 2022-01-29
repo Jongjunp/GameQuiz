@@ -13,10 +13,14 @@
   "author": "Park Jongjun",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.25.0",
+    "dotenv": "^14.3.2",
     "express": "^4.17.2",
     "http-errors": "^2.0.0",
     "mongoose": "^6.1.8",
+    "pupeteer": "^0.0.1",
     "require": "^0.4.4",
-    "socket.io": "^4.4.1"
+    "socket.io": "^4.4.1",
+    "steamapi": "^2.2.0"
   }
 }
