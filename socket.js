@@ -1,6 +1,5 @@
 const SocketIO = require("socket.io");
 
-
 const Socket = async (server,app) => {
     const io = SocketIO(server, {path: "/socket.io"});
     app.set('io',io);
@@ -10,7 +9,6 @@ const Socket = async (server,app) => {
 
     //room namespace
     room.on("connection", (socket) => {
-        //at here we handle the socket event(?)
         const req = socket.request;
         const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
         console.log(
@@ -46,8 +44,6 @@ const Socket = async (server,app) => {
         });
 
         socket.on("error", (error) => {});
-
-
 
     })
 }

@@ -12,10 +12,6 @@ var userSchema = new Schema({
     userscore: {
         type: String,
         required: true
-    },
-    userranking: {
-        type: String,
-        required: true
     }
 });
 

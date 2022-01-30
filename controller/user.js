@@ -6,10 +6,10 @@ const errorGenerator = (message, statusCode = 500) => { // error 를 핸들링 �
     throw error; // error 를 핸들링 하는 하는 미들웨어로 에러를 던진다.
   };
 
-  //generate random game list by using the games in db.
-const updateUserState = async (req,res,next) => {
+//add new user in db
+const addNewUser = async (req,res,next) => {
     try {
-        console.log("Generate random game list for game");
+        console.log("Generate the new user");
         const { email } = req.query;
         const users = await Bookmark.find({ 'email':email });
         res.status(201).json({ message: "Load complete", bookmarks });
@@ -18,7 +18,7 @@ const updateUserState = async (req,res,next) => {
     }
 }
 
-//update the game db
+//update the userinfo
 const addNewUser = async (req,res,next) => {
     try {
         const { email,link  } = req.query;
@@ -31,11 +31,10 @@ const addNewUser = async (req,res,next) => {
 }
 
 //create a bookmark
-const _createUser = async ({gameid,gameimg,gamename}) => {
+const _createUser = async ({username,userscore}) => {
     const game = new Game({
-        'gameid': gameid,
-        'gameimg': gameimg,
-        'gamename': gamename
+        'username': username,
+        'userscore': userscore
     });
     return game.save();
 };
