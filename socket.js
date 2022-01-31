@@ -1,4 +1,5 @@
 const SocketIO = require("socket.io");
+const {  } = require("./controller/game.js")
 
 const Socket = async (server,app) => {
     const io = SocketIO(server, {path: "/socket.io"});
@@ -21,6 +22,10 @@ const Socket = async (server,app) => {
         });
 
         socket.on("error", (error) => {});
+
+        socket.on("gameready", () => {
+
+        })
 
         //problem send
         socket.emit("problem",() => {
