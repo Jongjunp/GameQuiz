@@ -50,6 +50,11 @@ const Socket = async (server,app) => {
 
         socket.on("error", (error) => {});
 
+        socket.on("message", () => {
+            console.log(`${ip} sends a message, socket id: ${socket.id}`);
+            
+        });
+
     })
 }
 
