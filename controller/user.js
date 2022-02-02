@@ -6,13 +6,12 @@ const errorGenerator = (message, statusCode = 500) => { // error 를 핸들링 �
     throw error; // error 를 핸들링 하는 하는 미들웨어로 에러를 던진다.
   };
 
-//add new user in db
-const addNewUser = async (req,res,next) => {
+//read all users
+const readAllUser = async (req,res,next) => {
     try {
-        console.log("Generate the new user");
-        const { email } = req.query;
-        const users = await Bookmark.find({ 'email':email });
-        res.status(201).json({ message: "Load complete", bookmarks });
+        console.log("Read all users");
+        const users = await User.find();
+        res.status(201).json({ message: "All users", users });
     } catch(err) {
         next(err);
     }
@@ -21,10 +20,11 @@ const addNewUser = async (req,res,next) => {
 //update the userinfo
 const addNewUser = async (req,res,next) => {
     try {
-        const { email,link  } = req.query;
-        const bookmark = await Bookmark.findOne({ 'email':email,'link':link });
-        if(!bookmark) errorGenerator("There isn't corresponding bookmark!", 404);
-        res.status(201).json({ message: "Find Bookmark", bookmark });
+        const { username } = req.body;
+        const user = await User.findOne({ 'username':username });
+        if(user) errorGenerator("The user already exist!", 404);
+        await _createUser(username,0);
+        res.status(201).json({ message: "Addition success"});
     } catch(err) {
         next(err);
     }
@@ -39,6 +39,18 @@ const _createUser = async ({username,userscore}) => {
     return game.save();
 };
 
+//modifying score
+const modifScore = async (req,res,next) => {
+    try{
+        const { username,userscore } = req.body;
+        const user = await User.findOneAndUpdate({ 'username':username },{ 'userscore':userscore });
+        if(!user) errorGenerator("There is no such user in db", 404);
+        res.status(201).json({ message: "Modification success"});      
+    } catch(err) {
+        next(err);
+    }
+};
+
 
 //export
-module.exports = {genRandomGameList, updateGames};
+module.exports = {readAllUser, addNewUser, modifScore};
